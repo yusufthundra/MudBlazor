@@ -36,13 +36,13 @@ jobs:
         if: always()
         run: |
             ls -la
-            ls -la MudBlazor.UnitTests/TestResults/Report
+            ls -la MudBlazor.UnitTests/TestResults
             find . -name 'coverage*' -print 
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
           name: test-result-artifact
-          path: 'MudBlazor.UnitTests/TestResults/Report'
+          path: MudBlazor.UnitTests
       - name: Coverage
         if: ${{ inputs.publish-coverage == true }}
         uses: codecov/codecov-action@v2
