@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-result-artifact
-          path: TestResults
+          path: ./MudBlazor.UnitTests/TestResults
       - name: Coverage
         if: ${{ inputs.publish-coverage == true }}
         uses: codecov/codecov-action@v2
