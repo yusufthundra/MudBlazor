@@ -12,20 +12,7 @@ on:
         required: false
         type: boolean
         default: false
-      deploy-web-app:
-        required: false
-        type: boolean
-        default: false
-      deploy-condition:
-        required: false
-        type: string
-      deploy-web-app-name:
-        description: 'name of the azure app only needed if deploy web app is true'
-        required: false
-        type: string
-    secrets:
-      publish-profile:
-        required: false
+      
 
 jobs:
   ci:
