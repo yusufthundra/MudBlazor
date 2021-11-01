@@ -33,7 +33,9 @@ jobs:
       - name: Test
         run: dotnet test --no-build --no-restore --blame-hang --blame-hang-timeout 60s /property:GenerateFullPaths=true /consoleloggerparameters:NoSummary /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByAttribute='ExcludeFromCodeCoverage' /p:Include='[MudBlazor]*' /p:SkipAutoProps=true /p:CoverletOutput='./TestResults/'
       - name: ls
-        run: ls -la
+        run: |
+            ls -la MudBlazor
+            grep -r –i 'cobertura'
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
