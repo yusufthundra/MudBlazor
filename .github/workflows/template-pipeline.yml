@@ -60,30 +60,9 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: coverage.cobertura.xml
 
-      - name: Publish
-        if: ${{ inputs.deploy-web-app == true }}
-        run: dotnet publish ./MudBlazor.Docs.Server -c Release -o ${{env.DOTNET_ROOT}}/${{ inputs.deploy-web-app-name }}
-        
       - uses: actions/upload-artifact@v2
         if: ${{ inputs.deploy-web-app == true }}
         with:
           name: ${{ inputs.deploy-web-app-name }}
           path: ${{env.DOTNET_ROOT}}/${{ inputs.deploy-web-app-name }}
-  cd:
-    name: Deploy
-    needs: ci
-    if: ${{ inputs.deploy-web-app == true && github.event_name == 'push' && github.repository_owner == 'MudBlazor' && github.ref == inputs.deploy-condition }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v2.0.10
-        with:
-          name: ${{ inputs.deploy-web-app-name }}
-          path: ${{ inputs.deploy-web-app-name }}
-
-      - name: Deploy to Azure
-        uses: azure/webapps-deploy@v2
-        with: 
-            app-name: ${{ inputs.deploy-web-app-name }}
-            publish-profile: ${{ secrets.publish-profile }}
-            package: ${{ inputs.deploy-web-app-name }}
+  
