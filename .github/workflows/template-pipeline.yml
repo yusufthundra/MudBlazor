@@ -35,7 +35,7 @@ jobs:
       - name: ls
         run: |
             ls -la MudBlazor
-            grep -r –i 'cobertura'
+            find . -name 'coverage*' -print 
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
