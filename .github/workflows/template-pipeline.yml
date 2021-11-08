@@ -41,9 +41,8 @@ jobs:
       - name: find file
         if: always()
         run: |
-          ls -la
-            ls -la MudBlazor.UnitTests
-            find . -name 'xunit_results.xml' -print 
+          ls -la MudBlazor.UnitTests/Generated
+          find . -name 'xunit_results.xml' -print 
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
